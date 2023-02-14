@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { 
   Container, 
@@ -7,17 +7,22 @@ import {
 } from './styles';
 
 // componente puro
-const Toggle: React.FC = () => (
-  <Container>
-    <ToggleLabel>Light</ToggleLabel>
-    <ToggleSelector 
-      checked
-      uncheckedIcon={false}
-      checkedIcon={false}
-      onChange={() => console.log('mudou')} 
-    />
+const Toggle: React.FC = () => {
+  const [checked, setChecked] = useState(false);
+  // const [online, setOnline] = useState(false);
+  
+  return (
+    <Container>
+     <ToggleLabel>Light</ToggleLabel>
+     <ToggleSelector 
+        checked={checked}
+        uncheckedIcon={false}
+        checkedIcon={false}
+        onChange={() => setChecked(!checked)} 
+      />
     <ToggleLabel>Dark</ToggleLabel>
   </Container>
-)
+  );
+}
 
 export default Toggle;

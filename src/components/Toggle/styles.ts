@@ -7,7 +7,8 @@ export const Container = styled.div`
 `;
 
 export const ToggleLabel = styled.span`
-  display: inline-block;color: ${props => props.theme.colors.white};
+  display: inline-block;
+  color: ${props => props.theme.colors.white};
 `;
 
 //personalizando um componente especifico
