@@ -22,56 +22,6 @@ const List: React.FC = () => {
       
       <Content>
         <HistoryFinanceCard
-        cardColor="#313862"
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="20/02/2023" 
-        amount="R$ 140,00"
-        />
-        <HistoryFinanceCard
-        cardColor="#313862"
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="20/02/2023" 
-        amount="R$ 140,00"
-        />
-        <HistoryFinanceCard
-        cardColor="#313862"
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="20/02/2023" 
-        amount="R$ 140,00"
-        />
-        <HistoryFinanceCard
-        cardColor="#313862"
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="20/02/2023" 
-        amount="R$ 140,00"
-        />
-        <HistoryFinanceCard
-        cardColor="#313862"
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="20/02/2023" 
-        amount="R$ 140,00"
-        />
-        <HistoryFinanceCard
-        cardColor="#313862"
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="20/02/2023" 
-        amount="R$ 140,00"
-        />
-        <HistoryFinanceCard
-        cardColor="#313862"
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="20/02/2023" 
-        amount="R$ 140,00"
-        />
-        <HistoryFinanceCard
-        cardColor="#313862"
         tagColor="#E44C4E"
         title="Conta de Luz"
         subtitle="20/02/2023" 
