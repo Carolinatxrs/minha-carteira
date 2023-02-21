@@ -5,6 +5,7 @@ import {
   MdArrowUpward,
   MdExitToApp
 } from'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import logoImg from '../../assets/logo.svg';
 
@@ -13,8 +14,7 @@ import {
   Header,
   LogImg,
   Title,
-  MenuContainer,
-  MenuItemLink
+  MenuContainer
 } from './styles';
 
 const Aside: React.FC = () => {
@@ -26,25 +26,25 @@ const Aside: React.FC = () => {
       </Header>
 
       <MenuContainer>
-        <MenuItemLink href="#">
+        <Link to="/dashboard">
           <MdDashboard />
           Dashboard
-        </MenuItemLink>
+        </Link>
 
-        <MenuItemLink href="#">
+        <Link to="/list/entry-balance">
           <MdArrowDownward />
           Entradas
-        </MenuItemLink>
+        </Link>
 
-        <MenuItemLink href="#">
+        <Link to="/list/exit-balance">
           <MdArrowUpward />
           Saídas
-        </MenuItemLink>
+        </Link>
 
-        <MenuItemLink href="#">
+        <Link to="#">
           <MdExitToApp />
           Sair
-        </MenuItemLink>
+        </Link>
       </MenuContainer>  
     </Container>
   );
