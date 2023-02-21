@@ -3,11 +3,11 @@ import React from 'react';
 import { Container } from './styles';
 
 // Cria a interface para children
-interface ChildrenProps {
+interface IChildrenProps {
   children: React.ReactNode;
 }
 
-const Content: React.FC<ChildrenProps> = ({children}) => {
+const Content: React.FC<IChildrenProps> = ({children}) => {
   return (
     <Container>
       {children}
