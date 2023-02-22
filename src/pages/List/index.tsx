@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 
 import ContentHeader from '../../components/ContentHeader';
 import SelectInput from '../../components/SelectInput';
@@ -6,9 +6,23 @@ import HistoryFinanceCard from '../../components/HistoryFinanceCard';
 
 import {useParams} from 'react-router-dom';
 
+import gains from '../../repositories/gains';
+import expenses from '../../repositories/expenses';
+
 import { Container, Content, Filters } from './styles';
 
+interface IData {
+  id: string;
+  description: string;
+  amountFormatted: string;
+  frequency: string;
+  dataFormatted: string;
+  tagColor: string;
+}
+
 const List: React.FC = () => {
+
+  const [data, setData] = useState<IData[]>([]);
 
   const {type} = useParams();
 
@@ -20,6 +34,9 @@ const List: React.FC = () => {
     return type === 'entry-balance' ? '#F7931B' : '#E44C4E'
   },[type]);
 
+  const listData = useMemo(() => {
+    return type === 'entry-balance' ? gains : expenses;
+  },[type]);
 
   const months = [
     {value: '7', label: 'Julho'},
@@ -32,6 +49,23 @@ const List: React.FC = () => {
     {value: '2021', label: '2021'},
     {value: '2022', label: '2022'},
   ];
+
+  // dispara quando a tela é carregada
+  useEffect(() => {
+
+    const response = listData.map(item => {
+      return {
+        id: String(Math.random() * listData.length),
+        description: item.description,
+        amountFormatted: item.amount,
+        frequency: item.frequency,
+        dataFormatted: item.date,
+        tagColor: item.frequency === 'recorrente' ? '#4E41F0' : '#E44C4E'
+      };
+    });
+    setData(response);
+    // type para carregamento do <content> de entradas e saídas
+  },[type]);
 
   return (
     <Container>
@@ -57,12 +91,18 @@ const List: React.FC = () => {
       </Filters>
       
       <Content>
-        <HistoryFinanceCard
-        tagColor="#E44C4E"
-        title="Conta de Luz"
-        subtitle="20/02/2023" 
-        amount="R$ 140,00"
-        />
+        {
+          data.map(item => (
+            <HistoryFinanceCard
+              key={item.id}
+              tagColor={item.tagColor}
+              title={item.description}
+              subtitle={item.amountFormatted}
+              amount={item.amountFormatted}
+            /> 
+          ))
+        }
+        
       </ Content>
     </Container>
   );
