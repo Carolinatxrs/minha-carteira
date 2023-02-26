@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 // importação de icones
 import dolarImg from '../../assets/dolar.svg';
@@ -23,12 +23,26 @@ const WalletBox: React.FC<IWalletBoxProps> = ({
   icon,
   color
 }) => {
+
+  const iconSelected = useMemo(() => {
+    switch (icon) {
+      case 'dolar':
+        return dolarImg;
+      case 'arrowUp':
+        return arrowUpImg;
+      case 'arrowDown':
+        return arrowDownImg;    
+      default:
+        return undefined;
+    }
+  },[icon]);
+  
   return (
     <Container color={color}>
       <span>{title}</span>
       <h1>{amount}</h1>
       <small>{footerlabel}</small>
-      <img src={dolarImg} alt={title} />
+      <img src={iconSelected} alt={title} />
     </ Container>
   );
 }

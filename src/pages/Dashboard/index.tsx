@@ -1,25 +1,26 @@
 import React, { useMemo, useState } from 'react';
-
+// componentes
 import ContentHeader from '../../components/ContentHeader';
 import SelectInput from '../../components/SelectInput';
+import WalletBox from '../../components/WalletBox';
 
+// arquivos comuns
 import expenses from '../../repositories/expenses';
 import gains from '../../repositories/gains';
-
 import listOfMonths from '../../utils/months';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
 
 const Dashboard: React.FC = () => {
   // estado para guardar mês e ano selecionado
   const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
   const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
 
-  const options = [
-    {value: '2021', label: '2021'},
-    {value: '2022', label: '2022'},
-    {value: '2023', label: '2023'},
-  ];
+  // const options = [
+  //   {value: '2021', label: '2021'},
+  //   {value: '2022', label: '2022'},
+  //   {value: '2023', label: '2023'},
+  // ];
 
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
@@ -82,6 +83,30 @@ const Dashboard: React.FC = () => {
           defaultValue={yearSelected} 
         />
       </ ContentHeader>
+
+      <Content>
+        <WalletBox
+          title='saldo'
+          amount={150.00}
+          footerlabel='atualizado com base nas entradas e saídas'
+          icon='dolar'
+          color='#4E41F0'
+        />
+        <WalletBox
+          title='entradas'
+          amount={5000.00}
+          footerlabel='atualizado com base nas entradas'
+          icon='arrowUp'
+          color='#F7931B'
+        />
+        <WalletBox
+          title='saídas'
+          amount={4850.00}
+          footerlabel='atualizado com base nas saídas'
+          icon='arrowDown'
+          color='#E44C4E'
+        />
+      </Content>
     </Container> 
   );
 }
