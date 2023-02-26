@@ -1,7 +1,7 @@
 import React from 'react';
 
 // importação de icones
-import dollarImg from '../../assets/dollar.svg';
+import dolarImg from '../../assets/dolar.svg';
 import arrowUpImg from '../../assets/arrow-up.svg';
 import arrowDownImg from '../../assets/arrow-down.svg';
 
@@ -12,7 +12,7 @@ interface IWalletBoxProps {
   title: string;
   amount: number;
   footerlabel: string;
-  icon: 'dollar' | 'arrowUp' | 'arrowDown';
+  icon: 'dolar' | 'arrowUp' | 'arrowDown';
   color: string;
 }
 
@@ -28,7 +28,7 @@ const WalletBox: React.FC<IWalletBoxProps> = ({
       <span>{title}</span>
       <h1>{amount}</h1>
       <small>{footerlabel}</small>
-      <img src={dollarImg} alt={title} />
+      <img src={dolarImg} alt={title} />
     </ Container>
   );
 }
