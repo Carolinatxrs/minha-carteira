@@ -98,6 +98,11 @@ const Dashboard: React.FC = () => {
     return total;
   },[monthSelected, yearSelected]);
 
+  //calcula o saldo
+  const totalBalance = useMemo(() => {
+    return totalGains - totalExpenses;
+  },[totalExpenses, totalGains]);
+
   const handleMonthSelected = (month: string) => {
     try {
       const parseMonth = Number(month);
@@ -134,7 +139,7 @@ const Dashboard: React.FC = () => {
       <Content>
         <WalletBox
           title='saldo'
-          amount={150.00}
+          amount={totalBalance}
           footerlabel='atualizado com base nas entradas e saídas'
           icon='dolar'
           color='#4E41F0'
