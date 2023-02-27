@@ -12,7 +12,7 @@ import listOfMonths from '../../utils/months';
 
 // imagens
 import happyImg from '../../assets/happy.svg';
-import sadImg from '../../assets/sad.svg';
+// import sadImg from '../../assets/sad.svg';
 
 import { Container, Content } from './styles';
 
@@ -55,6 +55,27 @@ const Dashboard: React.FC = () => {
       }
     });
   },[]);
+
+  // calcula total de gastos - saídas
+  const totalExpenses = useMemo(() => {
+    let total: number = 0;
+
+    expenses.forEach(item => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+
+      /*se o mês e ano forem iguais aos selecionados converte para number e incrementa*/
+      if (month === monthSelected && year === yearSelected) {
+        try {
+          total += Number(item.amount);
+        } catch {
+          throw new Error('Invalid amount! Amount must be number.');    
+        }        
+      }
+    });
+    return total;
+  },[monthSelected, yearSelected]);
 
   const handleMonthSelected = (month: string) => {
     try {
@@ -106,7 +127,7 @@ const Dashboard: React.FC = () => {
         />
         <WalletBox
           title='saídas'
-          amount={4850.00}
+          amount={totalExpenses}
           footerlabel='atualizado com base nas saídas'
           icon='arrowDown'
           color='#E44C4E'
