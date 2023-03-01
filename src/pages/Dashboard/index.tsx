@@ -22,12 +22,6 @@ const Dashboard: React.FC = () => {
   const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
   const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
 
-  // const options = [
-  //   {value: '2021', label: '2021'},
-  //   {value: '2022', label: '2022'},
-  //   {value: '2023', label: '2023'},
-  // ];
-
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
 
