@@ -4,7 +4,7 @@ import ContentHeader from '../../components/ContentHeader';
 import SelectInput from '../../components/SelectInput';
 import WalletBox from '../../components/WalletBox';
 import MessageBox from '../../components/MessageBox';
-import PieChart from '../../components/PieChart';
+import PieChartBox from '../../components/PieChartBox';
 
 // arquivos comuns
 import expenses from '../../repositories/expenses';
@@ -29,9 +29,9 @@ const Dashboard: React.FC = () => {
     [...expenses, ...gains].forEach(item => {
       const date = new Date(item.date);
       const year = date.getFullYear();
-      
+
       if (!uniqueYears.includes(year)) {
-        uniqueYears.push(year);        
+        uniqueYears.push(year);
       }
     });
 
@@ -41,7 +41,7 @@ const Dashboard: React.FC = () => {
         label: year,
       }
     });
-  },[]);
+  }, []);
 
   const months = useMemo(() => {
     return listOfMonths.map((month, index) => {
@@ -50,7 +50,7 @@ const Dashboard: React.FC = () => {
         label: month,
       }
     });
-  },[]);
+  }, []);
 
   // calcula total de gastos - saídas
   const totalExpenses = useMemo(() => {
@@ -66,12 +66,12 @@ const Dashboard: React.FC = () => {
         try {
           total += Number(item.amount);
         } catch {
-          throw new Error('Invalid amount! Amount must be number.');    
-        }        
+          throw new Error('Invalid amount! Amount must be number.');
+        }
       }
     });
     return total;
-  },[monthSelected, yearSelected]);
+  }, [monthSelected, yearSelected]);
 
   // calcula total de ganhos - entradas
   const totalGains = useMemo(() => {
@@ -87,17 +87,17 @@ const Dashboard: React.FC = () => {
         try {
           total += Number(item.amount);
         } catch {
-          throw new Error('Invalid amount! Amount must be number.');    
-        }        
+          throw new Error('Invalid amount! Amount must be number.');
+        }
       }
     });
     return total;
-  },[monthSelected, yearSelected]);
+  }, [monthSelected, yearSelected]);
 
   //calcula o saldo
   const totalBalance = useMemo(() => {
     return totalGains - totalExpenses;
-  },[totalExpenses, totalGains]);
+  }, [totalExpenses, totalGains]);
 
   // tratamento da mensagem de carteira
   const message = useMemo(() => {
@@ -123,8 +123,31 @@ const Dashboard: React.FC = () => {
         icon: happyImg
       }
     }
-  },[totalBalance]);
+  }, [totalBalance]);
 
+  const relationExpensesVersusGains = useMemo(() => {
+    const total = totalGains + totalExpenses;
+
+    const percentGains = (totalGains / total) * 100;
+    const percentExpenses = (totalExpenses / total) * 100;
+
+    const data = [
+      {
+        name: 'Entradas',
+        value: totalGains,
+        percent: Number(percentGains.toFixed(1)),
+        color: '#F7931B'
+      },
+      {
+        name: 'Saídas',
+        value: totalExpenses,
+        percent: Number(percentExpenses.toFixed(1)),
+        color: '#E44C4E'
+      },
+    ];
+
+    return data;
+  }, [totalGains, totalExpenses])
 
   const handleMonthSelected = (month: string) => {
     try {
@@ -147,15 +170,15 @@ const Dashboard: React.FC = () => {
   return (
     <Container>
       <ContentHeader title='Dashboard' lineColor='#F7931B'>
-      <SelectInput 
-          options={months} 
-          onChange={(e) => handleMonthSelected(e.target.value)} 
-          defaultValue={monthSelected} 
+        <SelectInput
+          options={months}
+          onChange={(e) => handleMonthSelected(e.target.value)}
+          defaultValue={monthSelected}
         />
-        <SelectInput 
-          options={years} 
-          onChange={(e) => handleYearSelected(e.target.value)} 
-          defaultValue={yearSelected} 
+        <SelectInput
+          options={years}
+          onChange={(e) => handleYearSelected(e.target.value)}
+          defaultValue={yearSelected}
         />
       </ ContentHeader>
 
@@ -187,9 +210,9 @@ const Dashboard: React.FC = () => {
           footerText={message.footerText}
           icon={message.icon}
         />
-        <PieChart />
+        <PieChartBox data={relationExpensesVersusGains} />
       </Content>
-    </Container> 
+    </Container>
   );
 }
 
