@@ -66,7 +66,7 @@ export const Legend = styled.li<ILegendProps>`
     border-radius: 5px;
 
     //tamanho e alinhamento do números
-    font-size: 18px;
+    font-size: 14px;
     line-height: 40px;
     text-align: center;
   }
