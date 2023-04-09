@@ -11,16 +11,14 @@ interface ChildrenProps {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<ChildrenProps> = ({children}) => {
-  return (
-    <Grid>
-      <MainHeader />
-      <Aside />
-      <Content>
-        {children}
-      </Content>
-    </Grid>
-  );
-}
+const Layout: React.FC<ChildrenProps> = ({ children }) => (
+  <Grid>
+    <MainHeader />
+    <Aside />
+    <Content>
+      {children}
+    </Content>
+  </Grid>
+);
 
 export default Layout;

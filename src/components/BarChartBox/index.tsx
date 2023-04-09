@@ -29,43 +29,41 @@ interface IBarChartBox {
   }[],
 }
 
-const BarChartBox: React.FC<IBarChartBox> = ({ title, data }) => {
-  return (
-    <Container>
-      <SideLeft>
-        <h2>{title}</h2>
-        <LegendContainer>
-          {
-            data.map((id) => (
-              <Legend key={id.name} color={id.color}>
-                <div>{id.percent}%</div>
-                <span>{id.name}</span>
-              </Legend>
-            ))
-          }
-        </LegendContainer>
-      </SideLeft>
+const BarChartBox: React.FC<IBarChartBox> = ({ title, data }) => (
+  <Container>
+    <SideLeft>
+      <h2>{title}</h2>
+      <LegendContainer>
+        {
+          data.map((id) => (
+            <Legend key={id.name} color={id.color}>
+              <div>{id.percent}%</div>
+              <span>{id.name}</span>
+            </Legend>
+          ))
+        }
+      </LegendContainer>
+    </SideLeft>
 
-      <SideRight>
-        <ResponsiveContainer>
-          <BarChart data={data}>
-            <Bar dataKey='amount' name='Valor'>
-              {
-                data.map((indicador) => (
-                  <Cell
-                    key={indicador.name}
-                    fill={indicador.color}
-                    cursor='pointer'
-                  />
-                ))
-              }
-            </Bar>
-            <Tooltip cursor={{ fill: 'none' }} formatter={(value) => formatCurrency(Number(value))} />
-          </BarChart>
-        </ResponsiveContainer>
-      </SideRight>
-    </ Container>
-  );
-}
+    <SideRight>
+      <ResponsiveContainer>
+        <BarChart data={data}>
+          <Bar dataKey='amount' name='Valor'>
+            {
+              data.map((indicador) => (
+                <Cell
+                  key={indicador.name}
+                  fill={indicador.color}
+                  cursor='pointer'
+                />
+              ))
+            }
+          </Bar>
+          <Tooltip cursor={{ fill: 'none' }} formatter={(value) => formatCurrency(Number(value))} />
+        </BarChart>
+      </ResponsiveContainer>
+    </SideRight>
+  </ Container>
+);
 
 export default BarChartBox;

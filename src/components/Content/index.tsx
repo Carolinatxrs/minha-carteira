@@ -7,12 +7,10 @@ interface IChildrenProps {
   children: React.ReactNode;
 }
 
-const Content: React.FC<IChildrenProps> = ({children}) => {
-  return (
-    <Container>
-      {children}
-    </ Container>
-  );
-}
+const Content: React.FC<IChildrenProps> = ({ children }) => (
+  <Container>
+    {children}
+  </ Container>
+);
 
 export default Content;
