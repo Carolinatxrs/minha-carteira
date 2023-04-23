@@ -53,23 +53,46 @@ export const MenuContainer = styled.nav`
   margin-top: 50px;
 `;
 
-// export const MenuItemLink = styled.a`
-//   color: ${props => props.theme.colors.info};
-//   text-decoration: none;
+export const MenuItemLink = styled.a`
+  color: ${props => props.theme.colors.info};
+  text-decoration: none;
 
-//   margin: 7px 0;
+  margin: 7px 0;
 
-//   display: flex;
-//   align-items: center;
+  display: flex;
+  align-items: center;
 
-//   transition: opacity .3s;
+  transition: opacity .3s;
 
-//   &:hover {
-//     opacity: 0.7;
-//   }
+  &:hover {
+    opacity: 0.7;
+  }
 
-//   > svg {
-//     font-size: 18px;
-//     margin-right: 5px;
-//   }
-// `;
+  > svg {
+    font-size: 18px;
+    margin-right: 5px;
+  }
+`;
+
+export const MenuItemButton = styled.button`
+  font-size: 16px;
+  color: ${props => props.theme.colors.info};
+
+  border: none;
+  background: none;
+
+  margin: 7px 0;
+  display: flex;
+  align-items: center;
+
+  transition: opacity .3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  > svg {
+    font-size: 18px;
+    margin-right: 5px;
+  }
+`;
